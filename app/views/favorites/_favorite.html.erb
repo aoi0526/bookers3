@@ -1,0 +1,11 @@
+<% if book.favorited_by?(current_user) %>  <!-- ユーザーが「いいね」を押しているかを判別するためのメソッド -->
+  <%= link_to book_favorites_path(book), method: :delete, remote: true do %>
+    💖
+    <%= book.favorites.count %>  <!--　その本の投稿に何個「いいね」がついているか -->
+  <% end %>
+<% else %>
+  <%= link_to book_favorites_path(book), method: :post, remote: true do %>
+    ♡
+    <%= book.favorites.count %>
+  <% end %>
+<% end %>
