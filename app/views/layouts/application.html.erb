@@ -3,14 +3,111 @@
   <head>
     <title>Bookers3</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://kit.fontawesome.com/b0937a904e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+      <header>
+      <% if user_signed_in? %>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <sapn>Bookers</sapn>
+          </a>
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+              <li>
+                <%= link_to user_path(current_user.id),class:"nav-link text-light" do %>
+                  <i class="fas fa-home"></i>
+                  Home
+                <% end %>
+              </li>
+              <li>
+                <%= link_to users_path,class:"nav-link text-light" do %>
+                  <i class="fas fa-users"></i>
+                  Users
+                <% end %>
+              </li>
+              <li>
+                <%= link_to books_path,class:"nav-link text-light" do %>
+                  <i class="fas fa-book-open"></i>
+                  Books
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete,class:"nav-link text-light" do %>
+                  <i class="fas fa-sign-out-alt"></i>
+                  Log out
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <% else %>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <sapn>Bookers</sapn>
+          </a>
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+              <li>
+                <%= link_to root_path,class:"nav-link text-light" do %>
+                  <i class="fas fa-home"></i>
+                  Home
+                <% end %>
+              </li>
+              <li>
+                <%= link_to home_about_path,class:"nav-link text-light" do %>
+                  <i class="fas fa-link"></i>
+                  About
+                <% end %>
+              </li>
+              <li>
+                <%= link_to  new_user_registration_path,class:"nav-link text-light" do %>
+                  <i class="fas fa-user-plus"></i>
+                  Sign up
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_user_session_path,class:"nav-link text-light" do %>
+                  <i class="fas fa-sign-in-alt"></i>
+                  Log in
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <% end %>
+    </header>
+
+    <!-- 検索フォーム部分テンプレート -->
+
+
+
+    <%= flash[:notice] %>
     <%= yield %>
+    <footer>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
   </body>
 </html>
