@@ -8,6 +8,29 @@
     <th>introduction</th>
     <th><%= user.introduction %></th>
   </tr>
+  <tr>
+    <th>follows</th> <!--フォローしている数-->
+    <th><%= link_to @user.followings.count, followings_user_path(@user) %></th>
+  </tr>
+  <tr>
+    <th>followers</th>
+    <th><%= link_to @user.followers.count, followers_user_path(@user) %></th>
+  </tr>
+  <tr>
+    <th>
+      <% unless @user == current_user %>
+        <% if @user.is_followed_by?(current_user) %>
+          <%= link_to user_relationships_path(@user), method: :delete do %>
+            <button class="btn btn-info">フォロー外す</button>
+          <% end %>
+        <% else %>
+          <%= link_to user_relationships_path(@user), method: :post do %>
+            <button class="btn btn-success">フォローする</button>
+          <% end %>
+        <% end %>
+      <% end %>
+    </th>
+  </tr>
 </table>
 
 <div class='row'>
