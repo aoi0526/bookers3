@@ -15,7 +15,6 @@
 
   <body>
     <header>
-      <header>
       <% if user_signed_in? %>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -89,9 +88,15 @@
         </div>
       </nav>
       <% end %>
+      <!-- 検索フォーム部分テンプレート -->
+      <div class="container">
+        <div class="row justify-content-center my-1">
+          <% if user_signed_in? %>
+            <%= render 'searches/search_form' %>
+          <% end %>
+        </div>
+      </div>
     </header>
-
-    <!-- 検索フォーム部分テンプレート -->
 
 
 
