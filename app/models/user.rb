@@ -15,6 +15,10 @@ class User < ApplicationRecord
   has_many :reverse_of_relastionships, class_name: 'Relationship', foreign_key: :follower_id #重複してしまうのでreverse_of_を使う
   has_many :followers, through: :reverse_of_relastionships, source: :following # あるユーザーをフォローしてくれている人
 
+# DM機能アソシエーション
+  has_many :user_rooms, dependent: :destroy
+  has_many :chats, dependent: :destroy
+
   has_one_attached :profile_image
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true

@@ -21,12 +21,25 @@
       <% unless @user == current_user %>
         <% if @user.is_followed_by?(current_user) %>
           <%= link_to user_relationships_path(@user), method: :delete do %>
-            <button class="btn btn-info">フォロー外す</button>
+            <button class="btn btn-info ">
+              <i class="fas fa-user-check"></i>
+              フォロー中
+            </button>
           <% end %>
         <% else %>
           <%= link_to user_relationships_path(@user), method: :post do %>
-            <button class="btn btn-success">フォローする</button>
+            <button class="btn btn-success">
+              <i class="fas fa-user-plus"></i>
+              フォローする
+            </button>
           <% end %>
+        <% end %>
+      <% end %>
+    </th>
+    <th>
+      <% if current_user != user && current_user.is_followed_by?(user) && user.is_followed_by?(current_user) %>
+        <%= link_to chat_path(user.id), class: " btn btn-warning" do %>
+          <i class="fas fa-envelope"></i>Chats
         <% end %>
       <% end %>
     </th>
@@ -34,7 +47,7 @@
 </table>
 
 <div class='row'>
-  <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" do %>
+  <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block rounded-pill edit_user_#{user.id}" do %>
     <i class="fas fa-user-cog"></i>
   <% end %>
 </div>
