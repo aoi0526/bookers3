@@ -60,3 +60,7 @@ gem 'devise'
 gem 'image_processing', '~>1.2'
 
 gem 'jquery-rails'
+
+gem 'letter_opener_web', '~> 1.0'
+
+gem 'dotenv-rails'
