@@ -77,4 +77,17 @@ Rails.application.configure do
   config.hosts << "a3e26227f665436dbe80dbf5d2aca101.vfs.cloud9.us-east-1.amazonaws.com"
 
   config.active_job.queue_adapter = :inline
+
+
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    port:                 587,
+    address:              'smtp.gmail.com',
+    domain:               'gmail.com',
+    
+    authentication:       'login',
+    enable_starttls_auto: true
+  }
 end
