@@ -25,6 +25,7 @@
             </div>
           </td>
           <td>コメント数:<%= @book.book_comments.count %></td>
+          <td>閲覧数: <%= @book.view_counts.count %></td>
 
           <% if user_signed_in? && current_user.id == @book.user_id %>
             <td><%= link_to 'Edit', edit_book_path(@book.id), class:"btn btn-sm btn-success edit_book_#{@book.id}" %></td>
