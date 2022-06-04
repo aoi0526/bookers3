@@ -18,9 +18,13 @@ class User < ApplicationRecord
 # DM機能アソシエーション
   has_many :user_rooms, dependent: :destroy
   has_many :chats, dependent: :destroy
-  
+
 # ViewCountアソシエーション
   has_many :view_counts, dependent: :destroy
+
+# グループ機能
+  has_many :group_users
+  has_many :groups, through: :group_users #userは、group_usersという中間テーブルを通じてgroupsにアクセスできる
 
   has_one_attached :profile_image
 

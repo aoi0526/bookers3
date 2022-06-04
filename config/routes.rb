@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'chat/:id', to: 'chats#show', as: 'chat'
 
   resources :chats, only: [:create]
+  resources :groups, except: [:destroy]
 
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
     resource :favorites, only: [:create, :destroy]
