@@ -7,7 +7,27 @@
    <%= f.label :opinion %>
    <%= f.text_area :body, class: 'form-control book_body' %>
  </div>
+
+ <!--星レビュー機能-->
+
+ <div class="form-group row" id="star">
+  <%= f.label :star,'評価 ', class:'col-md-3 col-form-label' %>
+  <%= f.hidden_field :star, id: :review_star %>  <!-- hidden_fieldはviewからcontrollerにデータを送る -->
+ </div>
+ <script>
+　$('#star').empty(); //これがないとブラウザバックで星が増え続ける不具合が発生する
+  $('#star').raty({
+   size     : 36,
+   starOff:  '<%= asset_path('star-off.png') %>',
+   starOn : '<%= asset_path('star-on.png') %>',
+   scoreName: 'book[star]', //これがbookモデルのstarカラムへ値を保存するという意味になる
+   half: false,  //星半分の評価は入力できないように設定する
+  })
+ </script>
+
  <div class="form-group">
    <%= f.submit class: 'btn btn-success' %>
  </div>
+
+
 <% end %>

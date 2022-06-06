@@ -27,6 +27,23 @@
           <td>コメント数:<%= @book.book_comments.count %></td>
           <td>閲覧数: <%= @book.view_counts.count %></td>
 
+          <!--星レビュー機能-->
+          <td>
+            <div id="star-rate<%= @book.id %>">
+              <script>
+                $('#star-rate<%= @book.id %>').empty();
+                $('#star-rate<%= @book.id %>').raty({
+                  size: 36,
+                  starOff: '<%= asset_path('star-off-png') %>',
+                  starOn: '<%= asset_path('star-On-png') %>',
+                  half: false,
+                  readOnly: true, //読み取り専用、編集できないようにする
+                  score: <%= @book.star %>  // @book = Book.find(params[:id])のstarカラムを取り出す
+                })
+              </script>
+            </div>
+          </td>
+
           <% if user_signed_in? && current_user.id == @book.user_id %>
             <td><%= link_to 'Edit', edit_book_path(@book.id), class:"btn btn-sm btn-success edit_book_#{@book.id}" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？'}, class: "btn btn-sm btn-danger destroy_book_#{@book.id}" %></td>
