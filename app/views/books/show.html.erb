@@ -34,12 +34,12 @@
                 $('#star-rate<%= @book.id %>').empty();
                 $('#star-rate<%= @book.id %>').raty({
                   size: 36,
-                  starOff: '<%= asset_path('star-off-png') %>',
-                  starOn: '<%= asset_path('star-On-png') %>',
+                  starOff: '<%= asset_path('star-off.png') %>',
+                  starOn: '<%= asset_path('star-on.png') %>',
                   half: false,
                   readOnly: true, //読み取り専用、編集できないようにする
-                  score: <%= @book.star %>  // @book = Book.find(params[:id])のstarカラムを取り出す
-                })
+                  score: <%= @book.star %>,  // @book = Book.find(params[:id])のstarカラムを取り出す
+                });
               </script>
             </div>
           </td>
