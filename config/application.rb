@@ -18,5 +18,8 @@ module Bookers3
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.time_zone = 'Asia/Tokyo' #タイムゾーンを日本に設定する
+    config.i18n.default_locale = :ja
   end
 end

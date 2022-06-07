@@ -21,6 +21,16 @@ class BooksController < ApplicationController
     }
     @book = Book.new
     @user = User.find(current_user.id)
+
+    if params[:latest]   #viewからの指示を受けるための名前を定義、viewに記述してあるlatestと繋がっている
+      @books = Book.latest #このlatestはモデルに記述してあるlatestと繋がっている
+    elsif params[:old]
+      @books = Book.old
+    elsif params[:star_count]
+      @books = Book.star_count
+    else
+      @books = Book.all
+    end
   end
 
   def show

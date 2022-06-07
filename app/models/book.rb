@@ -11,6 +11,11 @@ class Book < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true, length: { maximum: 200 }
   
+  #データの取り出し方を指示
+  scope :latest, -> {order(created_at: :desc)}  #latestは任意の名前、orderはデータの取り出し
+  scope :old, -> {order(created_at: :asc)}      #created_atは投稿日カラム、descは昇順、ascは降順
+  scope :star_count, -> {order(star: :desc)}
+  
   # 検索機能
   def self.search_for(content, method)
     if method == 'perfect'
